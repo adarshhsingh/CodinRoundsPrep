@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface StockPriceService {
+    + void addOrUpdatePrice(String stock, int timestamp, double price)
+    + double getMaxPrice(String stock)
+}
+
+interface StockPriceStorage {
+    +void upsertPrice(String stock, int timestamp, double price)
+    +double getMaxPrice(String stock)
+}
+
+class StockPriceStorageImpl implements StockPriceStorage {
+    +void upsertPrice(String stock, int timestamp, double price)
+    +double getMaxPrice(String stock)
+}
+
+class StockPriceServiceImpl implements StockPriceService {
+    -StockPriceStorage storage
+    +void addOrUpdatePrice(String stock, int timestamp, double price)
+    +double getMaxPrice(String stock)
+}
+
+StockPriceServiceImpl --> StockPriceStorage : uses
+
+@enduml

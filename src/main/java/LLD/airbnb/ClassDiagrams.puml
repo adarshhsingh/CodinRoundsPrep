@@ -1,0 +1,77 @@
+@startuml
+
+class Room {
+    private UUID roomId;
+    private Host host;
+    private String location;
+    private double price;
+    private boolean availability;
+
+    public UUID getRoomId();
+    public String getLocation();
+    public double getPrice();
+    public boolean isAvailable();
+    public void updateDetails(String location, double price, boolean availability);
+}
+
+
+abstract class User {
+    private UUID id;
+    private String name;
+    private String email;
+    private String passwordHash;
+
+    public UUID getId();
+    public String getName();
+    public String getEmail();
+    public void signUp(String email, String password);
+    public void login(String email, String password);
+    public void manageProfile(String name, String email);
+}
+
+class Host extends User {
+    private List<Room> rooms;
+
+    public void listRoom(Room room);
+    public void manageRooms();
+}
+
+class Guest extends User {
+    private List<Booking> bookings;
+
+    public void bookRoom(Room room, Date checkInDate, Date checkOutDate);
+    public void manageBookings();
+}
+
+class Booking {
+    private UUID bookingId;
+    private Room room;
+    private Guest guest;
+    private Date checkInDate;
+    private Date checkOutDate;
+    private String status;
+
+    public UUID getBookingId();
+    public Room getRoom();
+    public Guest getGuest();
+    public void createBooking(Room room, Guest guest, Date checkInDate, Date checkOutDate);
+    public void cancelBooking();
+}
+
+class Review {
+    private UUID reviewId;
+    private Room room;
+    private Guest guest;
+    private int rating;
+    private String comments;
+
+    public UUID getReviewId();
+    public Room getRoom();
+    public Guest getGuest();
+    public void addReview(Room room, Guest guest, int rating, String comments);
+    public void updateReview(int rating, String comments);
+}
+
+
+
+@enduml

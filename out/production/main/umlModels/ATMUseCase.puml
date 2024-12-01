@@ -1,0 +1,16 @@
+@startuml
+actor customer
+
+'package'
+package "ATM" {
+(get money)
+(transfer money)
+}
+
+'associations'
+customer -- (get money)
+customer -- (transfer money)
+
+
+note left of customer : customer of ATM
+@enduml

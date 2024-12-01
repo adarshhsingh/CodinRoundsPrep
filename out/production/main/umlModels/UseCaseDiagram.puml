@@ -1,0 +1,19 @@
+@startuml
+actor User as PrimaryActor
+actor "Payment System" as SecondaryActor
+
+package "User Actions" {
+    PrimaryActor -> (Login)
+    PrimaryActor -> (Browse Products)
+    PrimaryActor -> (Add to Cart)
+}
+
+package "Checkout Process" {
+    PrimaryActor -> (Checkout)
+    (Checkout) -> SecondaryActor : "Process Payment"
+}
+
+note right of PrimaryActor : This is a primary actor initiating actions.
+note left of SecondaryActor : This is a secondary actor assisting in payment processing.
+
+@enduml

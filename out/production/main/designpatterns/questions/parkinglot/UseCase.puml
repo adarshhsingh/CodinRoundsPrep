@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+
+actor ParkingAgent
+actor Customer
+actor Admin
+actor System
+
+
+rectangle "Parking lot" {
+
+    package "AdminUse" {
+    (Add spot) as US1
+
+    (Add entry/exit panel) as US2
+    (Add/modify rate) as US3
+    (Add agent) as US4
+    package "AdminSubUse" {
+    (Login/logout \n to/from the agent or \n admin account) as US5
+    (View account) as US6
+    (Update account) as US7
+    }
+    }
+
+
+    package "CustomerUse" {
+    (Take ticket \n ---- \n take a ticket at the \n entrance, that contains \n information regarding the \n vehicle and its entrance time) as US9
+    (Scan ticket) as US10
+    (Pay Ticket) as US15
+    (Cash Pay) as US16
+    (CreditCard Pay) as US17
+    (Park vehicle) as US13
+    }
+    US15 <|-- US16
+    US15 <|-- US17
+    US10 .> US15: <includes>
+
+   package "SystemUse" {
+    (Show available) as US11
+    (Show full) as US12
+    (Assign the parking spot to vehicle) as US14
+    (Remove spot) as US8
+    }
+}
+
+Customer --> "CustomerUse"
+ParkingAgent --|> Customer
+ParkingAgent --> "AdminSubUse"
+System --> "SystemUse"
+Admin --> "AdminUse"
+@enduml

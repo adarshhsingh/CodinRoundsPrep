@@ -1,0 +1,31 @@
+@startuml
+
+
+package "StockPriceService" {
+(Handling Timestamps dis-orderness)
+(Handling Multiple Stock)
+(Provide Max Price of a Stock)
+(update Stock prices if timestamp exists)
+(Insert/Update Stock Price)
+}
+
+package "StockPriceStorage" {
+}
+
+(StockPriceService) --> (StockPriceStorage)
+
+package "Clients" {
+(ingress for stream of data points)
+(Get Maximum Price at PIT)
+}
+note left of (ingress for stream of data points): Each data point consists of a name, timestamp and a stock price.
+
+
+(Clients) --> (StockPriceService)
+
+
+(Insert/Update Stock Price) --> (Handling Timestamps dis-orderness): includes
+
+(Insert/Update Stock Price) --> (update Stock prices if timestamp exists): includes
+
+@enduml

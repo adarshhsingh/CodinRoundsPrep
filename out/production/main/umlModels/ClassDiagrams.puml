@@ -1,0 +1,39 @@
+@startuml
+class Person {
+    - String name
+    - int age
+    + void setName(String name)
+    + String getName()
+    + void setAge(int age)
+    + int getAge()
+}
+
+class Address {
+    - String city
+    + String getCity()
+    + void setCity(String city)
+}
+
+class Order
+
+Customer -- Order: places >
+
+Person -- Address: has >
+
+
+interface Payable {
+    + pay()
+}
+
+abstract class Employee {
+    - String name
+    + void showDetails()
+    + abstract calculatePay()
+}
+
+enum AccountType {
+    SAVINGS
+    CURRENT
+    FIXED_DEPOSIT
+}
+@enduml

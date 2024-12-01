@@ -1,0 +1,11 @@
+@startuml
+start
+:User enters login details;
+:Validate user credentials;
+if (Credentials are valid?) then (yes)
+  :Display dashboard;
+else (no)
+  :Show error message;
+endif
+stop
+@enduml

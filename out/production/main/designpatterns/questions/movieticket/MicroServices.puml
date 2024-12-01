@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+(UserService) as US1
+
+note left of US1
+Manages user accounts,
+authentication,and
+profile management.
+end note
+
+
+(AdminService) as US2
+note left of US2
+Manages admin accounts,
+authentication,and
+admin-specific functionalities.
+end note
+
+
+
+
+@enduml

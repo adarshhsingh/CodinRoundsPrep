@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+
+participant "Web Browser" as WB
+participant "Web Server" as WS
+participant "Database" as DB
+
+User -> WB: Enter login details
+WB -> WS: Send login request
+WS -> DB: Validate user
+DB --> WS: User valid
+WS --> WB: Display user dashboard
+WB --> User: Show dashboard
+
+@enduml

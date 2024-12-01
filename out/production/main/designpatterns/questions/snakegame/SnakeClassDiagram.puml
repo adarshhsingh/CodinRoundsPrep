@@ -1,0 +1,45 @@
+@startuml
+'GameBoard: handles the game state'
+class GameBoard {
+    -int width
+    -int height
+    -boolean[][] board
+    +GameBoard(int width, int height)
+    +boolean isPositionOccupied(int x, int y)
+    +setPosition(int x, int y, boolean occupied)
+    +clearBoard()
+}
+
+'Snake handles the snake's state and behavior'
+class Snake {
+    -List<Point> body
+    -Direction currentDirection
+    +Snake(Point initialPosition, int initialSize)
+    +move()
+    +grow()
+    +boolean isSelfCollision()
+    +void reset(Point initialPosition, int initialSize)
+}
+
+'GameController manages game logic.'
+class GameController {
+    -GameBoard gameBoard
+    -Snake snake
+    -int moveCount
+    +GameController(GameBoard gameBoard, Snake snake)
+    +startGame()
+    +moveSnake(Direction moveDirection)
+    +checkGameOver()
+    +restartGame()
+}
+
+enum Direction {
+    UP
+    DOWN
+    LEFT
+    RIGHT
+}
+
+
+
+@enduml

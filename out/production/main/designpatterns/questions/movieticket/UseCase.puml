@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+
+actor User
+actor Admin
+
+rectangle UserManagement {
+    User -- (Sign Up)
+    User -- (Login)
+    User -- (View Profile)
+    User -- (Update Profile)
+}
+
+rectangle EventManagement {
+    User -- (Search Events)
+    User -- (View Event Details)
+    User -- (Book Tickets)
+    User -- (Cancel Tickets)
+    User -- (View Booking History)
+}
+
+rectangle AdminManagement {
+    Admin -- (Add/Edit/Delete Events)
+    Admin -- (Manage Venues)
+    Admin -- (View Bookings)
+}
+
+rectangle PaymentHandling {
+    User -- (Process Payment)
+    User -- (Refunds)
+}
+
+rectangle NotificationManagement {
+    User -- (Send Notifications)
+}
+
+@enduml
+
+
+
+@enduml

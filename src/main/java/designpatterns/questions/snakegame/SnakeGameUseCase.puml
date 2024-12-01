@@ -1,0 +1,26 @@
+@startuml
+
+left to right direction
+
+actor Player
+
+
+rectangle "SnakeGame" {
+(Start Game)  as UC1
+(Move Snake)  as UC2
+(Grow Snake)  as UC3
+(End Game)    as UC4
+(Restart Game)as UC5
+}
+
+Player --> UC1
+Player --> UC2
+Player --> UC5
+UC2 .> UC3
+UC2 .> UC4
+UC5 .> UC1
+UC4 .> UC5
+
+
+
+@enduml

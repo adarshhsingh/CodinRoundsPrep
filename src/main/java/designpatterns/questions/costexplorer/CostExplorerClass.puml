@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface PricingModel {
+ + calculateMonthlyCost(): double
+ + calculateYearlyCost(): double
+}
+
+class FixedPriceModel implements PricingModel {
+ - monthlyCost: double
+ - yearlyCost: double
+ --
+ + FixedPriceModel(monthlyCost: double, yearlyCost: double)
+ + calculateMonthlyCost(): double
+ + calculateYearlyCost(): double
+}
+
+class UsageBasedPriceModel implements PricingModel {
+ - usage: double
+ - rate: double
+ --
+ + UsageBasedPriceModel(usage: double, rate: double)
+ + calculateMonthlyCost(): double
+ + calculateYearlyCost(): double
+}
+
+abstract class Product {
+    - name: String
+    - pricingModel: PricingModel
+    --
+    + Product(name: String, pricingModel: PricingModel)
+    + getName(): String
+    + getPricingModel(): PricingModel
+}
+
+class CostCalculator {
+    + calculateMonthlyCost(product: Product): double
+    + calculateYearlyCost(product: Product): double
+}
+
+class Customer {
+    - id: String
+    - name: String
+    - product: Product
+    - subscriptionDate: Date
+    --
+    + Customer(id: String, name: String, product: Product, subscriptionDate: Date)
+    + getId(): String
+    + getName(): String
+    + getProduct(): Product
+    + getSubscriptionDate(): Date
+}
+
+class Report {
+    - customerId: String
+    - reportDate: Date
+    - monthlyCost: double
+    - yearlyCost: double
+    - productName: String
+    --
+    + Report(customerId: String, reportDate: Date, monthlyCost: double, yearlyCost: double, productName: String)
+    + getCustomerId(): String
+    + getReportDate(): Date
+    + getMonthlyCost(): double
+    + getYearlyCost(): double
+    + getProductName(): String
+}
+
+class ReportGenerator {
+    + generateMonthlyReport(customer: Customer): Report
+    + generateYearlyReport(customer: Customer): Report
+}
+
+
+Product ..> PricingModel : includes
+Customer ..> Product : includes
+CostCalculator ..> Product : uses
+ReportGenerator ..> Customer : uses
+ReportGenerator ..> CostCalculator : uses
+
+@enduml

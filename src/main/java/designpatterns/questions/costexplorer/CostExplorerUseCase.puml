@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+actor Customer
+actor PaymentSystem
+
+note left of Customer : Subscribes to a product and wants to know the cost estimates
+note left of PaymentSystem : Processes payments based on cost estimates
+
+Customer -> (View Monthly Cost Estimate)
+Customer -> (View Yearly Cost Estimate)
+PaymentSystem -> (Generate Monthly Bill)
+PaymentSystem -> (Generate Yearly Bill)
+@enduml

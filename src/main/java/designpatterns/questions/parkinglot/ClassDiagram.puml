@@ -1,0 +1,33 @@
+@startuml
+abstract class Vehicle {
+  - licenseNo : String
+  --
+  + assignTicket(): void
+}
+
+class Car extends Vehicle
+class Truck extends Vehicle
+class Motorbike extends Vehicle
+class Van extends Vehicle
+
+abstract class ParkingSpot {
+  - ID : int
+  - isFree : bool
+  --
+  + getIsFree(): bool
+}
+class LargeVehicle extends ParkingSpot
+class HandicapVehicle extends ParkingSpot
+class CompactVehicle extends ParkingSpot
+class SmallVehicle extends ParkingSpot
+
+abstract class Account {
+  - username : int
+  - password : bool
+  - status   : bool
+  -
+  --
+  + getIsFree(): bool
+}
+
+@enduml
